@@ -1,5 +1,33 @@
-<div class = "parent-fragment" th:fragment = "parent">
-    <h1>This is parent</h1>
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae, dicta.</p>
+<!DOCTYPE html>
+<html  lang="en"   th:fragment="parent(content,title,script)"  xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title data-th-replace="${title}">SCM</title>
+        <link rel="stylesheet" data-th-href="@{/css/output.css}" />
+        <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" /> <!--Flowbite is a library for UI components-->
+        
+    </head>
+    <body>
+        
+        <!--common header-->
+        <div data-th-replace="~{navbar :: navbar}">
+            
 
-</div>
+        </div>
+
+        <!--main content-->
+        <div class="p-4  h-screen w-full bg-gray-100 dark:bg-gray-500">
+            <section data-th-replace="${content}" ></section>
+        </div>
+
+        <!--common footer-->
+        <footer class="p-4">
+            Footer: Learn Thymeleaf with SCM
+        </footer>
+        <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script> <!--Flowbite is a library for UI components-->
+
+        <th:block data-th-replace="${script}"> </th:block>
+            <!-- Additional scripts can be added here -->
+    </body>
+</html>

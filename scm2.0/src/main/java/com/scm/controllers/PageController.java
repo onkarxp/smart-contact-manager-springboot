@@ -18,6 +18,22 @@ public class PageController {
         model.addAttribute("youtubeChannel", "Ozone");
         model.addAttribute("description", "This is a SCM project for managing supply chain operations.");
         model.addAttribute("codolio", "https://codolio.com/profile/onkarxp");
-        return "home";
+        return "home"; //this home is the name of the view (home.html)
+    }
+
+    //about page handler
+    @RequestMapping("/about")
+    public String about(Model model){
+        model.addAttribute("isLogin", true);
+        
+        System.out.println("About page loading");
+        return "about"; //this about is the name of the view (about.html)
+    }
+
+    //service page handler
+    @RequestMapping("/services")
+    public String services(){
+        System.out.println("Services page loading");
+        return "services"; //this services is the name of the view (services.html)
     }
 }

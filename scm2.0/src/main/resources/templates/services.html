@@ -1,11 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" th:replace = "~{base :: parent(~{::#content},~{::title},~{::script})}">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>This is services page</h1>
+    <title>Services Page</title> </head>
+<body> 
+    <section id="content">
+        <h1>Welcome to services page</h1>
+        <h2>Services offered by SCM</h2>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, qui beatae minima voluptatibus totam facilis minus doloremque exercitationem similique animi possimus quia vel laboriosam aliquid cupiditate eius. Porro, numquam eveniet.<10></10>
+
+    </section>
+    <script>
+        console.log("services page");
+    </script>
 </body>
 </html>

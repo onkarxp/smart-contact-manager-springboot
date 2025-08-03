@@ -1,9 +1,8 @@
-/** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/main/resources/**/*.{html,js}"],
+  darkMode: 'class', // ✅ REQUIRED for toggle logic
+  content: ["./**/*.html"], // or the correct paths for your templates
   theme: {
     extend: {},
   },
   plugins: [],
-  darkMode: "selector", // Enable dark mode support
-}
+};

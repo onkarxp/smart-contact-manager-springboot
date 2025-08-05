@@ -1,15 +1,81 @@
 <!DOCTYPE html>
-<html lang="en" th:replace = "~{base :: parent(~{::#content},~{::title},~{::script})}" >
-<head> 
-    <title>Sign up Page</title>
+<html lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}">
+<head>
+  <title>Signup</title>
+  <!-- Your link to output.css should be here, e.g.: -->
+  <!-- <link rel="stylesheet" th:href="@{/css/output.css}" /> -->
+  <style>
+    /* Add this style to ensure the content area can flex and center its child */
+    #content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh; /* Ensures it takes full viewport height for vertical centering */
+      width: 100%; /* Ensures it takes full width for horizontal centering */
+    }
+  </style>
 </head>
-<body> 
-    <div id="content">
-        <h1>Welome to Sign up page</h1>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis, ipsum.</p>
-    </div>
-    <script>console.log("sign up page");
+<body class="bg-gray-100">
+  <div id="content">
+      <!-- The Card Element -->
+      <!-- 
+           - w-full: Takes full width on small screens.
+           - max-w-lg: Limits the card's maximum width on larger screens.
+           - mx-auto: Centers the card horizontally within its parent.
+           - We removed the grid and col-span classes from this div and its parent,
+             as they were not being generated responsively.
+      -->
+      <div class="w-full mt-3 max-w-lg mx-auto">
+        <div href="#" class="block p-6 bg-white border
+            border-gray-200 rounded-lg shadow-sm hover:bg-gray-100
+            dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900
+                    dark:text-white">Sign-up here
+          </h5>
+          <p class="font-normal text-gray-700
+                    dark:text-gray-400">Start managing your contacts on cloud :)
+          </p>
 
-    </script>
+          <form action="" class="mt-5">
+              <!--name-->
+              <div class="mb-3">
+                 <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    Name
+                 </label>
+                      <input type="text" 
+                      id="name" 
+                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500
+                          block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white 
+                          dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                          placeholder="Enter here" 
+                          required />
+              </div>
+
+              <!--Email Field-->
+              <div class="mb-3">
+                  <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                  <input type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@flowbite.com" required />
+              </div>
+              <!--Password Field-->
+              <div class="mb-3">
+                  <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">New Password</label>
+                  <input type="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 
+                  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                   dark:focus:ring-blue-500 dark:focus:border-blue-500"  required />
+              </div>
+              <!--Phone Number-->
+              <div class="mb-3">
+                  <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone Number</label>
+                  <input type="text" id="phone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  required />
+          </form>
+        </div>
+      </div>
+  </div>
+
+  <script>
+    console.log("Signup page");
+  </script>
 </body>
 </html>

@@ -1,8 +1,16 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: 'class', // ✅ REQUIRED for toggle logic
-  content: ["./**/*.html"], // or the correct paths for your templates
+  content: [
+    // This path is now perfectly accurate for your templates folder:
+    "./src/main/resources/templates/**/*.html",
+    
+    // You can keep this if you ever put HTML files directly at the project root,
+    // but based on your structure, it might not be strictly necessary for now.
+    // "./*.html", 
+  ],
   theme: {
     extend: {},
   },
   plugins: [],
-};
+  darkMode: 'class', // Enable dark mode support
+}

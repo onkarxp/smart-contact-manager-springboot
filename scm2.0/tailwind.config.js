@@ -2,7 +2,7 @@
 module.exports = {
   content: [
     // This path is now perfectly accurate for your templates folder:
-    "./src/main/resources/templates/**/*.html",
+    "scm2.0/src/main/resources/templates/**/*.html",
     
     // You can keep this if you ever put HTML files directly at the project root,
     // but based on your structure, it might not be strictly necessary for now.

@@ -1,5 +1,4 @@
 /* input.css */
-
+@import "tailwindcss";
 @import "tailwindcss/preflight";
-
 @import "tailwindcss/utilities";

@@ -49,7 +49,7 @@ public class User {
     //sign up info : SELF, GOOGLE, GITHUB
     @Enumerated(EnumType.STRING)
     private Providers provider = Providers.SELF;
-    private String provider_user_Id;
+    private String providerUserId;
 
     //add more feilds if needed
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,fetch = FetchType.LAZY,orphanRemoval = true)

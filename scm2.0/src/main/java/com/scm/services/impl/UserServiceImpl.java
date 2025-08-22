@@ -2,11 +2,15 @@ package com.scm.services.impl;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import com.scm.helper.AppConstants;
 import com.scm.helper.ResourceNotFoundException;
 import com.scm.entities.User;
 import com.scm.repositories.UserRepo;
@@ -20,10 +24,26 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepo userRepo;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Override
     public User saveUser(User user) {
+        //we have to genrate userID dynamically also
+
+        //so we will use UUID class to generate userID
+
+        //password encoding
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        //set the user role
+        user.setRoleList(List.of(AppConstants.ROLE_USER));
+        String userId = UUID.randomUUID().toString();
+        user.setUserId(userId);
+        
+        
         return userRepo.save(user);
     }
 
@@ -66,20 +86,23 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean isUserExist(String userId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isUserExist'");
+        User user2 = userRepo.findById(userId).orElse(null);
+        return user2 != null ? true : false;  
+        //if user2 is not null, it means user exists, so return true
+        //if user2 is null, it means user does not exist, so return false}
     }
 
     @Override
     public boolean isUserExistByEmail(String email) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isUserExistByEmail'");
+        //here an issue arises, because we dont have a method findByEmail in UserRepo
+        //so we need to create a custom query method in UserRepo.
+        User user2 = userRepo.findByEmail(email).orElse(null);
+        return user2 != null ? true : false;
     }
 
     @Override
     public List<User> getAllUsers() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAllUsers'");
+       return userRepo.findAll();
     }
     
 }

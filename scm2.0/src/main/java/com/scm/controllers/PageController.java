@@ -1,19 +1,35 @@
 package com.scm.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.scm.entities.User;
 import com.scm.forms.UserForm;
+import com.scm.helper.Message;
+import com.scm.helper.MessageType;
+import com.scm.services.UserService;
+
+import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 
+
+
 @Controller
 public class PageController {
+
+    //Injecting the userService into the controller
+    @Autowired
+    private UserService userService;
 
     @RequestMapping("/home")
     public String home(Model model) {
@@ -71,14 +87,61 @@ public class PageController {
 
     @RequestMapping(value="/do-register", method = RequestMethod.POST)
     //This method will handle the registration form submission
-    public String processRegister(@ModelAttribute UserForm userForm){
+    public String processRegister(@Valid @ModelAttribute UserForm userForm, BindingResult rBindingResult, HttpSession session){
             System.out.println("Processing registration form");
 
+           
+
             //fetch form data
+
             //validate form data
-            //save to database
+                //bindingResult is used to capture validation errors
+                //How does bindingResult work?
+                //If there are any validation errors, we will return to the registration page with the error
+                if(rBindingResult.hasErrors()){
+                    return "register"; //returning to the registration page with error messages
+                }
+                 session.setAttribute("message", "Registration successful!");
+
+
+
+
+            //SAVE TO DATABASE
+                //Here we will use the userService to save the user
+                 //We will create a User object from the userForm data
+
+                //  User user = User.builder()
+                //         .name(userForm.getName())
+                //         .email(userForm.getEmail())
+                //         .password(userForm.getPassword())
+                //         .about(userForm.getAbout())
+                //         .phoneNumber(userForm.getPhoneNumber())
+                //         .profilePic("default_Image.png") //default profile picture
+                        
+                //         .build();
+
+                //         User savedUser = userService.saveUser(user);
+
+                
+                //we are using normal object, because builder pattern was not able to get the default values
+                //We will create a User object from the userForm data
+                User user = new User();
+                user.setName(userForm.getName());
+                user.setEmail(userForm.getEmail());
+                user.setPassword(userForm.getPassword());
+                user.setAbout(userForm.getAbout());
+                user.setPhoneNumber(userForm.getPhoneNumber());
+                user.setProfilePic("@{'/images/default_Image.png'}"); //default profile picture
+
+                User savedUser = userService.saveUser(user);
+
             //message = "Registration successful"
-            System.out.println(userForm);
+            System.out.println(" User Saved : ");
+
+            //add the message to the session
+          Message message = Message.builder().content("Registration successful!").type(MessageType.green).build();
+
+            session.setAttribute("message", message);
         
             return "redirect:/register"; //Redirecting to login page after registration
     }

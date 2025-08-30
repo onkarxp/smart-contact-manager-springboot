@@ -69,7 +69,17 @@ public class SecurityConfig {
             authorize.requestMatchers("/user/**").authenticated(); //everything under /user/ requires authentication
             authorize.anyRequest().permitAll();
             });
-            httpSecurity.formLogin(Customizer.withDefaults());
+
+            //customizinng the default login form provided by spring security
+            httpSecurity.formLogin(formLogin -> {
+
+                formLogin.loginPage("/login")
+                .loginProcessingUrl("/authenticate")
+                .successForwardUrl("/user/dashboard") //redirecting to user dashboard after successful login
+                .failureForwardUrl("/login?error=true")
+                .usernameParameter("email")
+                .passwordParameter("password");
+            });
 
        
         return httpSecurity.build();

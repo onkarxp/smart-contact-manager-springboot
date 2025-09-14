@@ -31,6 +31,9 @@ public class UserController {
             
             String username = Helper.getEmailofLoggedInUser(authentication);
             logger.info("User logged in: " + username);
+
+
+            //db se user ko detch kar sakte hai
             System.out.println("user profile accessed");
             return "user/profile";
         }

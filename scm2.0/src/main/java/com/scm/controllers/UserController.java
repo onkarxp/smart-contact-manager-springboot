@@ -1,12 +1,22 @@
 package com.scm.controllers;
 
+import java.security.Principal;
+
+import org.hibernate.validator.internal.util.logging.LoggerFactory;
+import java.util.logging.Logger;
+
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.scm.helper.Helper;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
 
+
+        Logger logger = Logger.getLogger(UserController.class.getName());
 
         //user dashboard endpoint
         @RequestMapping("/dashboard")
@@ -17,8 +27,11 @@ public class UserController {
 
         //user profile endpoint
         @RequestMapping("/profile")
-        public String userProfile() {
-            System.out.println("User profile accessed");
+        public String userProfile(Authentication authentication) {
+            
+            String username = Helper.getEmailofLoggedInUser(authentication);
+            logger.info("User logged in: " + username);
+            System.out.println("user profile accessed");
             return "user/profile";
         }
 }

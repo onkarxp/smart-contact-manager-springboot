@@ -1,5 +1,5 @@
 <nav
-  data-th-fragment="navbar"
+  th:fragment="navbar"
   class="bg-white border-gray-900 shadow-sm dark:bg-gray-900"
 >
   <div
@@ -16,8 +16,8 @@
         alt="Flowbite Logo"
       />
       <span
-        class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
-        >SCM2.0</span
+        class="self-center text-2xl font-semibold whitespace-nowrap text-blue-900 dark:text-white"
+        >Smart Contact Manager ™</span
       >
     </a>
 
@@ -28,9 +28,9 @@
       <!-- dark light theme button -->
       <button
         id="theme_change_button"
-        class="bg-gray-200 px-3 py-2 rounded-lg dark:bg-gray-600"
+        class="bg-gray-300 px-3 py-2 rounded-lg dark:bg-gray-600"
       >
-        <i class="fa-solid fa-circle-half-stroke"></i> <span>Light</span>
+        <i class="fa-solid fa-circle-half-stroke text-gray-800 dark:text-white"></i> <span class=" text-gray-800 dark:text-white" >Light</span>
       </button>
       <a
         data-th-href="@{'/login'}"

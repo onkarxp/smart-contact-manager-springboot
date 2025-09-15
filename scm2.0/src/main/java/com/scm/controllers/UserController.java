@@ -1,19 +1,28 @@
 package com.scm.controllers;
 
-import java.security.Principal;
 
-import org.hibernate.validator.internal.util.logging.LoggerFactory;
 import java.util.logging.Logger;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.scm.entities.User;
 import com.scm.helper.Helper;
+import com.scm.services.UserService;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
+
+        @Autowired
+        private UserService userService;
+
+       
+
 
 
         Logger logger = Logger.getLogger(UserController.class.getName());
@@ -27,14 +36,14 @@ public class UserController {
 
         //user profile endpoint
         @RequestMapping("/profile")
-        public String userProfile(Authentication authentication) {
+        public String userProfile(Model model,Authentication authentication) { //Model is used to send data from controller to view
+           
             
-            String username = Helper.getEmailofLoggedInUser(authentication);
-            logger.info("User logged in: " + username);
+            //this will be used in the profile.html page to show user details
+
+            
 
 
-            //db se user ko detch kar sakte hai
-            System.out.println("user profile accessed");
             return "user/profile";
         }
 }

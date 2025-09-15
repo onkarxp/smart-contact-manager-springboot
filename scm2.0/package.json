@@ -9,5 +9,11 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "flowbite": "^3.1.2"
+  },
+  "devDependencies": {
+    "tailwindcss": "^4.1.13"
+  }
 }

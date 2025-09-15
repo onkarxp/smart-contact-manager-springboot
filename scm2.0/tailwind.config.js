@@ -1,16 +1,20 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'class',
   content: [
-    // This path is now perfectly accurate for your templates folder:
-    "scm2.0/src/main/resources/templates/**/*.html",
-    
-    // You can keep this if you ever put HTML files directly at the project root,
-    // but based on your structure, it might not be strictly necessary for now.
-    // "./*.html", 
+    // Your path to your html files
+    "./scm2.0/src/main/resources/templates/**/*.html",
+
+    // --- ADD THIS LINE ---
+    // It tells Tailwind to scan Flowbite's JS files for classes
+    "./node_modules/flowbite/**/*.js"
   ],
   theme: {
     extend: {},
   },
-  plugins: [],
-  darkMode: 'class', // Enable dark mode support
+  plugins: [
+    // --- ADD THIS LINE ---
+    // This activates the Flowbite plugin
+    require('flowbite/plugin')
+  ],
 }

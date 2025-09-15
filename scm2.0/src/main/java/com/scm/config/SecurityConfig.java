@@ -83,7 +83,7 @@ public class SecurityConfig {
 
                 formLogin.loginPage("/login")
                 .loginProcessingUrl("/authenticate")
-                .successForwardUrl("/user/dashboard") //redirecting to user dashboard after successful login
+                .successForwardUrl("/user/profile") //redirecting to user dashboard after successful login
                 // .failureForwardUrl("/login?error=true")
                 .usernameParameter("email")
                 .passwordParameter("password");

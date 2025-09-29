@@ -9,7 +9,7 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 
 public class Helper {
 
-    public static String getEmailofLoggedInUser(Authentication authentication) {
+    public static String getEmailOfLoggedInUser(Authentication authentication) {
        
         
         

@@ -3,6 +3,8 @@ package com.scm.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -35,14 +37,17 @@ public class Contact {
     private String address;
     private String picture;
     @Lob
-    @Column (length = 10000)
+    @Column (length = 1000)
     private String description;
     private boolean favourite = false;
     private String websiteLink;
     private String linkedInLink;
 
+    private String cloudinaryImagePublicId;
+
 
     @ManyToOne
+    @JsonIgnore
     private User user; //this is an object of User class, matlab ek contact ka ek user hoga
 
     @OneToMany(mappedBy = "contact",cascade = CascadeType.ALL,fetch = FetchType.EAGER,orphanRemoval = true)

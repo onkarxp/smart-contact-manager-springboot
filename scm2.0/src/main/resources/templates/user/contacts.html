@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}">
+<head>
+    <title >All Your Contacts</title>
+</head>
+<body>
+    <div  id="content">
+
+        <!-- if still logged in, include sidebar as well -->
+     <div th:if="${loggedInUser}">
+      <div data-th-replace="~{user/sidebar :: sidebar}"></div>
+     </div>
+
+        <div  class="pt-20" style="padding-left: 16rem;  height: 1000px">
+                <div class="jistufy-center items-center flex flex-col ">
+                <h1 class="text-5xl text-gray-900 dark:text-white">All Your Contacts</h1>
+                <p class=" text-gray-900 dark:text-white">List of all contacts</p>
+        </div> 
+
+
+    </div>
+        
+    </div>
+    <script>
+        console.log("This is a dashboard page");
+    </script>
+</body>
+</html>
+

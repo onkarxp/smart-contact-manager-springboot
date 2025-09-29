@@ -28,7 +28,7 @@ public class RootController {
             if(authentication == null) return;
             System.out.println("Adding logged in user info to model");
 
-            String username = Helper.getEmailofLoggedInUser(authentication);
+            String username = Helper.getEmailOfLoggedInUser(authentication);
             logger.info("User logged in: " + username);
             //db se user ko detch kar sakte hai
             User user = userService.getUserByEmail(username); 

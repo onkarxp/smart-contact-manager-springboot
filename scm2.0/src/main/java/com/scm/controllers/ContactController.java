@@ -1,11 +1,13 @@
 package com.scm.controllers;
 
 
+import java.util.List;
 import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.scm.entities.Contact;
 import com.scm.entities.User;
 import com.scm.forms.ContactForm;
+import com.scm.helper.AppConstants;
 import com.scm.helper.Helper;
 import com.scm.helper.Message;
 import com.scm.helper.MessageType;
@@ -120,12 +123,20 @@ public class ContactController {
     }
 
     @RequestMapping()
-    public String viewcontacts(Authentication authentication){
+    public String viewcontacts(
+        // All these additional parameters are for pagination and sorting
+    @RequestParam(value = "page", defaultValue = "0") int page,
+            @RequestParam(value = "size", defaultValue = "10") int size,
+            @RequestParam(value = "sortBy", defaultValue = "name") String sortBy,
+            @RequestParam(value = "direction", defaultValue = "asc") String direction,Authentication authentication, Model model) {
         String username = Helper.getEmailOfLoggedInUser(authentication);
 
         User user = userService.getUserByEmail(username);
 
-        contactService.getByUserId(username);
+        Page<Contact> pageContact = contactService.getByUser(user,page,size,sortBy,direction);
+
+        model.addAttribute("pageContact", pageContact);
+
 
         return "user/contacts";
 
